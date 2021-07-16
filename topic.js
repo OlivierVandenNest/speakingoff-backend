@@ -3,6 +3,7 @@ const topic = function Topic() {
     let topicName
     let topicCreator
     let createdDate
+    let duration
 }
 
 const addTopic = (topic) => {
