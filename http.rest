@@ -1,0 +1,24 @@
+GET http://localhost:3000
+
+###
+
+POST http://localhost:3000/addtopic
+Content-Type: application/json
+
+{
+    "topicId": 2,
+    "topicName": "marketing",
+    "topicCreator": "olivier"
+}
+
+###
+
+GET http://localhost:3000/topic/1
+
+###
+
+GET http://localhost:3000/topic/2
+
+###
+
+GET http://localhost:3000/topics
