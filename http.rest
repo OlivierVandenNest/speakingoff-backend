@@ -1,24 +1,40 @@
-GET http://localhost:3000
+GET http://localhost:3002
 
 ###
 
-POST http://localhost:3000/addtopic
+GET http://localhost:3002/meetings
+
+###
+
+GET http://localhost:3002/meetings/pepsi
+
+###
+
+POST http://localhost:3002/addmeeting
 Content-Type: application/json
 
 {
-    "topicId": 2,
-    "topicName": "marketing",
-    "topicCreator": "olivier"
+    "meetingId": 1,
+    "meetingName": "cola",
+    "meetingTopics": {}
 }
 
 ###
 
-GET http://localhost:3000/topic/1
+POST http://localhost:3002/addtopic
+Content-Type: application/json
+
+{
+    "topicId": 2,
+    "topicName": "money",
+    "topicCreator": "olivierrrr",
+    "meetingName": "cola"
+}
 
 ###
 
-GET http://localhost:3000/topic/2
+GET http://localhost:3002/meetings/cola/topics/money
 
 ###
 
-GET http://localhost:3000/topics
+GET http://localhost:3002/meetings/pepsi/topics
