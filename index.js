@@ -64,4 +64,12 @@ app.post("/addtopic", (req, res) => {
         });
 });
 
+app.put("/updatetopic", (req, res) => {
+    Meeting.updateTopic(req.body)
+        .then((msg) => res.status(StatusCodes.OK).send(msg))
+        .catch(({ msg, statusCode }) => {
+            res.status(statusCode).send(`Error when updating topic: ${msg}`);
+        });
+});
+
 app.listen(port, () => console.log(`listening on port ${port}`));

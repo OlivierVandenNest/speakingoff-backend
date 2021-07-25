@@ -10,6 +10,7 @@ const topic = function Topic() {
     let createdDate;
     var duration;
     var meetingName;
+    var isFinished;
 };
 
 // TODO: data validation

@@ -32,10 +32,34 @@ const getMeeting = (meetingName) => {
     });
 };
 
+const updateTopic = (topic) => {
+    return new Promise((resolve, reject) => {
+        if (topic && topic.meetingName && topic.topicName) {
+            if (allMeetings.hasOwnProperty(topic.meetingName)) {
+                if (allMeetings[topic.meetingName].meetingTopics.hasOwnProperty(topic.topicName)) {
+                    console.log("merging");
+                    allMeetings[topic.meetingName].meetingTopics[topic.topicName] = Object.assign(
+                        {},
+                        allMeetings[topic.meetingName].meetingTopics[topic.topicName],
+                        topic
+                    );
+                    resolve("Topic updated");
+                } else {
+                    reject({ msg: "Please update a topic that the meeting contains", statusCode: StatusCodes.BAD_REQUEST });
+                }
+            } else {
+                reject({ msg: "Please enter a name from an existing meeting", statusCode: StatusCodes.BAD_REQUEST });
+            }
+        } else {
+            reject({ msg: "Please enter a valid meeting name and topic name", statusCode: StatusCodes.BAD_REQUEST });
+        }
+    });
+};
+
 const removeMeeting = (meetingName) => {
     delete allMeetings[meetingName];
 };
 
 var allMeetings = {};
 
-export { meeting, getMeeting, addMeeting, removeMeeting, allMeetings };
+export { meeting, getMeeting, addMeeting, updateTopic, removeMeeting, allMeetings };
