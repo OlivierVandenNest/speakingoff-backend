@@ -1,4 +1,4 @@
-import { allMeetings } from "./meeting.js";
+import { allMeetings, updateProgress } from "./meeting.js";
 import { StatusCodes } from "http-status-codes";
 
 // TODO: const resolve or reject messages
@@ -16,11 +16,12 @@ const topic = function Topic() {
 // TODO: data validation
 const addTopic = (topic) => {
     return new Promise((resolve, reject) => {
-        if (topic?.meetingName) {
+        if (topic?.meetingName && topic.duration > 0) {
             if (allMeetings.hasOwnProperty(topic.meetingName)) {
                 if (topic.topicName) {
                     if (!allMeetings[topic.meetingName].meetingTopics.hasOwnProperty(topic.topicName)) {
                         allMeetings[topic.meetingName].meetingTopics[topic.topicName] = topic;
+                        updateProgress(allMeetings[topic.meetingName]);
                         resolve("Topic added");
                     } else {
                         reject({ msg: "Topic with this topic name exists in the meeting already", statusCode: StatusCodes.BAD_REQUEST });
@@ -32,7 +33,7 @@ const addTopic = (topic) => {
                 reject({ msg: "Meeting with this meeting name does not exist yet", statusCode: StatusCodes.BAD_REQUEST }); // NOT FOUND?
             }
         } else {
-            reject({ msg: "Please add a Topic with a valid meeting name", statusCode: StatusCodes.BAD_REQUEST });
+            reject({ msg: "Please add a Topic with a valid meeting name and a duration", statusCode: StatusCodes.BAD_REQUEST });
         }
     });
 };
@@ -69,8 +70,4 @@ const getTopics = (meetingName) => {
     });
 };
 
-const removeTopic = (topicId) => {
-    delete allTopics[topicId];
-};
-
-export { topic, addTopic, getTopic, getTopics, removeTopic };
+export { topic, addTopic, getTopic, getTopics };

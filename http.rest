@@ -6,7 +6,7 @@ GET http://localhost:3002/meetings
 
 ###
 
-GET http://localhost:3002/meetings/pepsi
+GET http://localhost:3002/meetings/cola
 
 ###
 
@@ -28,7 +28,21 @@ Content-Type: application/json
     "topicId": 2,
     "topicName": "money",
     "topicCreator": "olivierrrr",
-    "meetingName": "cola"
+    "meetingName": "cola",
+    "duration": 30
+}
+
+###
+
+POST http://localhost:3002/addtopic
+Content-Type: application/json
+
+{
+    "topicId": 2,
+    "topicName": "money2",
+    "topicCreator": "olivierrrr",
+    "meetingName": "cola",
+    "duration": 20
 }
 
 ###
@@ -38,8 +52,21 @@ Content-Type: application/json
 
 {
     "topicName": "money",
-    "isFinished": "false",
-    "meetingName": "cola"
+    "isFinished": true,
+    "meetingName": "cola",
+    "duration": 40
+}
+
+###
+
+PUT http://localhost:3002/updatetopic
+Content-Type: application/json
+
+{
+    "topicName": "money2",
+    "isFinished": false,
+    "meetingName": "cola",
+    "duration": 100
 }
 
 ###
