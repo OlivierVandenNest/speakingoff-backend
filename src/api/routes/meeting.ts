@@ -107,4 +107,34 @@ export default (app: Router) => {
             }
         }
     );
+
+    route.get("/:meetingName/start", (req, res, next) => {
+        logger.debug(`Starting meeting ${req.params.meetingName}`);
+        try {
+            const meetingService = Container.get(MeetingService);
+            const requestedMeeting = meetingService.startMeeting(req.params.meetingName);
+            if (requestedMeeting) {
+                res.json({ meeting: requestedMeeting }).status(StatusCodes.OK);
+            } else {
+                res.send(`No meeting found`).status(StatusCodes.NOT_FOUND);
+            }
+        } catch (e) {
+            logger.error(`Failed starting meeting ${req.params.meetingName}: ${e}`);
+        }
+    });
+
+    route.get("/:meetingName/finish", (req, res, next) => {
+        logger.debug(`Finishing meeting ${req.params.meetingName}`);
+        try {
+            const meetingService = Container.get(MeetingService);
+            const requestedMeeting = meetingService.finishMeeting(req.params.meetingName);
+            if (requestedMeeting) {
+                res.json({ meeting: requestedMeeting }).status(StatusCodes.OK);
+            } else {
+                res.send(`No meeting found`).status(StatusCodes.NOT_FOUND);
+            }
+        } catch (e) {
+            logger.error(`Failed finishing meeting ${req.params.meetingName}: ${e}`);
+        }
+    });
 };

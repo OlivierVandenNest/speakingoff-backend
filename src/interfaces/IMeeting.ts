@@ -1,5 +1,10 @@
 import { ITopic } from "./ITopic";
 
+export enum MeetingStatus {
+    NotStarted,
+    Started,
+    Finished
+}
 export interface IMeeting {
     meetingId: String;
     createdDateUnix: Number;
@@ -11,6 +16,7 @@ export interface IMeeting {
     progress: number;
 
     lastUpdatedUnix: Number;
+    status: MeetingStatus;
     isFinished: Boolean;
 }
 

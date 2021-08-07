@@ -1,5 +1,5 @@
 import { Service } from "typedi";
-import { IMeeting, IMeetingInputDTO } from "../interfaces/IMeeting";
+import { IMeeting, IMeetingInputDTO, MeetingStatus } from "../interfaces/IMeeting";
 import { v4 as uuid_v4 } from "uuid";
 import { ITopic, ITopicInputDTO } from "../interfaces/ITopic";
 
@@ -30,6 +30,7 @@ export default class MeetingService {
             totalDuration: 0,
             progress: 0,
             lastUpdatedUnix: Date.now(),
+            status: MeetingStatus.NotStarted,
             isFinished: false
         };
 
@@ -92,5 +93,27 @@ export default class MeetingService {
 
         this.updateMeetingProgress(newTopic.meetingName);
         updatedMeeting.lastUpdatedUnix = Date.now();
+    }
+
+    startMeeting(meetingName: String): IMeeting {
+        if (!this.meetingMap.has(meetingName)) {
+            return;
+        }
+
+        let updatedMeeting = this.meetingMap.get(meetingName);
+        updatedMeeting.status = MeetingStatus.Started;
+        updatedMeeting.lastUpdatedUnix = Date.now();
+        return updatedMeeting;
+    }
+
+    finishMeeting(meetingName: String): IMeeting {
+        if (!this.meetingMap.has(meetingName)) {
+            return;
+        }
+
+        let updatedMeeting = this.meetingMap.get(meetingName);
+        updatedMeeting.status = MeetingStatus.Finished;
+        updatedMeeting.lastUpdatedUnix = Date.now();
+        return updatedMeeting;
     }
 }

@@ -65,3 +65,8 @@ Content-Type: application/json
 
 ###
 
+GET http://localhost:3002/api/v1/meetings/cola/start
+
+###
+
+GET http://localhost:3002/api/v1/meetings/cola/finish
