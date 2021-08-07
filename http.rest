@@ -1,65 +1,59 @@
-GET http://localhost:3002
+GET http://localhost:3002/api/v1/
 
 ###
 
-GET http://localhost:3002/meetings
+GET http://localhost:3002/api/v1/meetings
+Content-Type: "application/json"
+###
+
+GET http://localhost:3002/api/v1/meetings/cola
 
 ###
 
-GET http://localhost:3002/meetings/cola
-
-###
-
-POST http://localhost:3002/addmeeting
+POST http://localhost:3002/api/v1/meetings/addmeeting
 Content-Type: application/json
 
 {
-    "meetingId": 1,
-    "meetingName": "cola",
-    "meetingTopics": {}
+    "meetingName": "cola"
 }
 
 ###
 
-POST http://localhost:3002/addtopic
+POST http://localhost:3002/api/v1/meetings/addtopic
 Content-Type: application/json
 
 {
-    "topicId": 2,
     "topicName": "money",
-    "topicCreator": "olivierrrr",
     "meetingName": "cola",
     "duration": 30
 }
 
 ###
 
-POST http://localhost:3002/addtopic
+POST http://localhost:3002/api/v1/meetings/addtopic
 Content-Type: application/json
 
 {
-    "topicId": 2,
     "topicName": "money2",
-    "topicCreator": "olivierrrr",
     "meetingName": "cola",
     "duration": 20
 }
 
 ###
 
-PUT http://localhost:3002/updatetopic
+PUT http://localhost:3002/api/v1/meetings/updatetopic
 Content-Type: application/json
 
 {
     "topicName": "money",
-    "isFinished": true,
+    "isFinished": false,
     "meetingName": "cola",
     "duration": 40
 }
 
 ###
 
-PUT http://localhost:3002/updatetopic
+PUT http://localhost:3002/api/v1/meetings/updatetopic
 Content-Type: application/json
 
 {
@@ -71,8 +65,3 @@ Content-Type: application/json
 
 ###
 
-GET http://localhost:3002/meetings/cola/topics/money
-
-###
-
-GET http://localhost:3002/meetings/pepsi/topics
