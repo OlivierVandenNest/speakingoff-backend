@@ -88,7 +88,8 @@ export default (app: Router) => {
             [Segments.BODY]: Joi.object().keys({
                 meetingName: Joi.string().required(),
                 topicName: Joi.string().required(),
-                duration: Joi.number().required()
+                duration: Joi.number().required(),
+                topicDescription: Joi.string().allow("").default("")
             })
         }),
         (req, res, next) => {

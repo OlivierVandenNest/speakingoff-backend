@@ -10,4 +10,5 @@ export interface ITopicInputDTO {
     topicName: String;
     duration: number;
     isFinished: Boolean;
+    topicDescription: String;
 }
