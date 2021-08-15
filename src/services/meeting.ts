@@ -30,7 +30,7 @@ export default class MeetingService {
             totalDuration: 0,
             progress: 0,
             lastUpdatedUnix: Date.now(),
-            status: MeetingStatus.NotStarted,
+            status: MeetingStatus.Preparation,
             isFinished: false
         };
 

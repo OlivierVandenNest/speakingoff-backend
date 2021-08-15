@@ -1,7 +1,7 @@
 import { ITopic } from "./ITopic";
 
 export enum MeetingStatus {
-    NotStarted,
+    Preparation,
     Started,
     Finished
 }
