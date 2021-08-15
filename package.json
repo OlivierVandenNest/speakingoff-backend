@@ -52,6 +52,7 @@
         "moment": "^2.29.1",
         "moment-timezone": "^0.5.33",
         "morgan": "^1.10.0",
+        "nodemon": "^2.0.12",
         "reflect-metadata": "^0.1.13",
         "typedi": "^0.10.0",
         "uuidv4": "^6.2.11",
